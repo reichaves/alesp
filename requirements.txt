@@ -1,0 +1,6 @@
+jupyter
+pandas
+xmltodict
+unidecode
+selenium
+wordcloud
