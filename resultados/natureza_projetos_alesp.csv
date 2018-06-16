@@ -1,0 +1,103 @@
+idNatureza,nmNatureza,sgNatureza,tpNatureza
+141,Projeto de lei de PPA,PLPPA,ME
+142,Projeto de lei do Orçamento,Orçamento,ME
+150,Transcrição,,AC
+130,Súmula Ofícios,,PA
+134,Processo de Contrato,,ME
+132,Processo de Contas,,ME
+133,Processo CFC,,ME
+135,Ordem do Dia,,PA
+148,Anexos,Anexos,AC
+125,Comunicado / convocação,CV,AC
+129,Declaração de Voto,,AC
+127,Estudo Propositura,,MD
+128,Estudo Acessorio,,MD
+93,Requerimento de Ordem do Dia,ROD,AC
+109,Memo,,ME
+107,mesaS,me,ME
+147,Req. de Comissão Parlamentar Especial,RCPE,ME
+108,Proposta de Alteração (Governador),PA,AC
+113,Pauta,Pauta,PA
+115,Estudo,,MD
+1,Projeto de lei,PL,ME
+2,Projeto de lei Complementar,PLC,ME
+3,Projeto de resolução,PR,ME
+4,Projeto de decreto legislativo,PDL,ME
+5,Proposta de emenda à Constituição,PEC,ME
+6,Moção,Moção,ME
+9,Indicação,Indicação,ME
+10,Projeto de Constituição,P. Const.,ME
+14,Emenda de Pauta,,AC
+15,Emenda de Plenário,,AC
+16,Emenda de Redação,,AC
+17,Parecer,,AC
+18,Autógrafo,,AC
+19,Ofício,,AC
+20,Veto Total,,AC
+21,Veto Parcial,,AC
+24,Lei,,AC
+25,Req. Retirada,,AC
+26,Req. Urgência,,AC
+11,Propositura,,ME
+27,Apoio,,AC
+28,Req. Retirada de Emenda,,AC
+29,Req. Retirada do Req. Retirada,,AC
+30,Substitutivo,,AC
+31,Anexação,ANE,AC
+32,Req. de Adiamento,,AC
+33,Lei Complementar,,AC
+34,Req. Juntada,,AC
+35,Lei (§ 7ª - artigo 28),,AC
+36,Requerimento de Votação,,AC
+37,Ata de Reunião de Comissão,,AC
+38,Anexo da Lei Orçamentária,,ME
+39,Resolução,,AC
+40,Decreto Legislativo,,AC
+41,Emenda Constitucional,,AC
+42,Anexo da Lei das Diretrizes Orçam.,,AC
+43,Req. Inclusão na O.Dia,,AC
+44,Lei Complementar (§ 8º - artigo 28),,AC
+45,Lei Complementar (§ 7º - artigo 28),,AC
+46,Lei  (§ 8º - artigo 28),,AC
+47,Mensagem Aditiva,,AC
+48,Moção (Produto),,AC
+49,Avulso,,AC
+50,Req. de Tramitação,,AC
+51,Lei  (§ 4º - artigo 28),,AC
+52,Requerimento de Não Arquivamento,,AC
+53,Requerimento de Desentranhamento,,AC
+54,Anexo de Lei,,AC
+55,Anexo de Lei Complementar,,ME
+56,Lei Complementar (§ 4º - artigo 28),,AC
+57,Req. Audiência de Comissão,,AC
+58,Audiência Pública,,AC
+59,Req. de Relator Especial,,AC
+60,Anexos ao P.L. de Diretrizes Orçam.,,AC
+61,Req. Informação - Reiteração,,AC
+71,Ofício,,ME
+81,Processo Legislativo,,ME
+110,Requerimento de Congratulações,,ME
+111,Requerimento de Pesar,,ME
+104,PROJETO DE EMENDA CONSTITUCIONAL,PEC,ME
+112,Projeto de lei de LDO,,ME
+114,Req. de constituição de CPI,RCCPI,ME
+116,Req. de não realização de sessão,RNRS,ME
+117,Req. de convocação de Secretário de Estado,RCSE,ME
+118,Req. de licença para desempenhar missão cultural,RLDMC,ME
+119,Req. de licença para tratamento de saúde,RLTS,ME
+120,Req. de licença para tratar de interesse particular,RLTIP,ME
+121,Req. de constituição de Comissão de Representação,RCCR,ME
+126,Minuta de Autógrafo,MIN,AC
+138,Emenda Aglutinativa,,AC
+144,Cota,,AC
+145,Voto em Separado,,AC
+146,Voto Vencido,,AC
+136,Súmula Indicações,,PA
+137,Súmula Requerimentos,,PA
+143,Requerimento,REQ2,ME
+149,Resposta Req. Informação,RRI,AC
+1000000001,Resposta à Propositura,RP,AC
+7,Requerimento,Req.,ME
+8,Requerimento de Informação,RI,ME
+1000000002,Resumo Sessão,RS,AC
+1000000000,Processo,Processo,ME
