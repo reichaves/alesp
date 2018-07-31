@@ -1,60 +1,80 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import UnexpectedAlertPresentException
+from selenium.common.exceptions import NoAlertPresentException
+from selenium.webdriver.support.select import Select
 import pandas as pd
 
-# Loads dataframe with codes to search
-deputados_socios_empresas = pd.read_csv("resultados/empresas_deputados.csv",sep=',',encoding = 'utf-8', converters={'cnpj': lambda x: str(x), 'cpf': lambda x: str(x), 'documento': lambda x: str(x)})
+deputados_socios_empresas = pd.read_csv("resultados/empresas_deputados.csv",sep=',',encoding = 'utf-8',
+                                        converters={'cnpj': lambda x: str(x),
+                                                    'cpf': lambda x: str(x),
+                                                    'documento': lambda x: str(x)})
 
-url = 'https://www.fazenda.sp.gov.br/SigeoLei131/Paginas/ConsultaDespesaAno.aspx?orgao='
+profile = webdriver.FirefoxProfile()
+browser = webdriver.Firefox(profile)
+browser.implicitly_wait(10)
 
-# List that goes the items found
+# Site that is accessed
+browser.get('https://www.fazenda.sp.gov.br/SigeoLei131/Paginas/ConsultaDespesaAno.aspx?orgao=')
+
+# List to store the data
 pagamentos = []
 
-def get_values(driver,link):
+for num, row in deputados_socios_empresas.iterrows():
+    # Variable with code to search
+    empresa = (row['cnpj']).strip()
+    deputado = (row['nome_urna']).strip()
 
-    for num, row in deputados_socios_empresas.iterrows():
-        # Stores the code to search
-        cnpj = (row['cnpj']).strip()
+    # Search for each code in four years
+    for vez in [2015, 2016, 2017, 2018]:
+        ano = str(vez)
 
-        driver.get(link)
-        wait = WebDriverWait(driver, 10)
-        item = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "select[name='ctl00$ContentPlaceHolder1$ddlAno']")))
-        select = Select(item)
+        # Select year
+        Select(browser.find_element_by_name('ctl00$ContentPlaceHolder1$ddlAno')).select_by_visible_text(ano)
 
-        # Do the searches in these four years
-        for vez in [2015, 2016, 2017, 2018]:
-            ano = str(vez)
-            select.select_by_visible_text(ano)
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,'#ctl00_ContentPlaceHolder1_rblDoc_0'))).click()
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,'#ctl00_ContentPlaceHolder1_txtCPF'))).send_keys(cnpj)
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,'#ctl00_ContentPlaceHolder1_btnPesquisar'))).click()
+        # Fill in the code to search
+        browser.find_element_by_xpath('//*[@id="ctl00_ContentPlaceHolder1_rblDoc_0"]').click()
+        browser.find_element_by_xpath('//*[@id="ctl00_ContentPlaceHolder1_txtCPF"]').send_keys(empresa)
+        browser.find_element_by_xpath('//*[@id="ctl00_ContentPlaceHolder1_btnPesquisar"]').click()
 
-            try:
-                cia = wait.until(EC.visibility_of_element_located((By.XPATH, "//tr[contains(.//th,'Credor')]/following::a"))).text
-                valor = wait.until(EC.visibility_of_element_located((By.XPATH, "//tr[contains(.//th[2],'Valor')]/following::td[2]"))).text
+        try:
+            found = True
+            alert = browser.switch_to.alert
+            alert.accept()
+            found = False
+            # Message shows that the code was not found that year
+            print("CNPJ " + empresa + " não encontrado no ano " + ano)
+            browser.find_element_by_xpath('//*[@id="ctl00_ContentPlaceHolder1_btnVoltar"]').click()
+        except NoAlertPresentException:
+            pass
 
-                dicionario = {"cnpj": cnpj,
-                              "ano": ano,
-                              "empresa": cia,
-                              "valor": valor,
-                             }
-                pagamentos.append(dicionario)
+        if found:
+            results = browser.find_element_by_xpath("//table[@id='ctl00_ContentPlaceHolder1_gdvCredor']//tr[2]")
+            cia = results.find_element_by_xpath("td[1]").text
+            valor = results.find_element_by_xpath("td[2]").text
 
-                print("CNPJ " + empresa + " encontrado no ano " + ano)
+            #Message shows that the code was found that year
+            print("CNPJ " + empresa + " encontrado no ano " + ano)
 
-            except UnexpectedAlertPresentException:
-                driver.switch_to_alert().accept()
-                print("CNPJ " + empresa + " não encontrado no ano " + ano)
+            # Fills dictionary with found data
+            dicionario = {"cnpj": empresa,
+                          "deputado_relacionado": deputado,
+                          "ano": ano,
+                          "empresa": cia,
+                          "valor": valor,
+                         }
+            pagamentos.append(dicionario)
 
 
-if __name__ == '__main__':
-    profile = webdriver.FirefoxProfile()
-    driver = webdriver.Firefox(profile)
-    try:
-        get_values(driver,url)
-    finally:
-        driver.quit()
+            # Go back one screen to do another search
+            browser.find_element_by_xpath('//*[@id="ctl00_ContentPlaceHolder1_btnVoltar"]').click()
+
+# Create the dataframe
+df_pagamentos = pd.DataFrame(pagamentos)
+
+
+pd.options.display.float_format = '{:,.2f}'.format
+
+df_pagamentos.info()
+
+df_pagamentos.reset_index()
+
+df_pagamentos.to_csv('resultados/pagtos_estaduais_empresas_deputados.csv', index=False, decimal=',')
