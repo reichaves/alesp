@@ -1,6 +1,6 @@
 # Investigações sobre a Alesp
 
-Este projeto é uma investigação do [Volt Data Lab](https://www.voltdata.info/) sobre o fuuncionamento da Alesp (Assembleia Legilstativa de São Paulo)
+Este projeto é uma investigação do [Volt Data Lab](https://www.voltdata.info/) sobre o funcionamento da Alesp (Assembleia Legilstativa de São Paulo)
 
 Foram consultados os [dados abertos](https://www.al.sp.gov.br/dados-abertos/) da Alesp da atual legislatura (2015-2018)
 
