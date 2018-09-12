@@ -14,7 +14,7 @@ Os eixos estudados foram:
 
 4 - Mostra como foi a quantidade e quais comissões os deputados estaduais estiveram presentes (notebook alesp_comissoes)
 
-5 - Detalhamento dos projetos de lei tramitados pelos deputados estaduis - quantidades e assuntos (notebook alesp_projetos)
+5 - Detalhamento dos projetos de lei tramitados pelos deputados estaduais - quantidades e assuntos (notebook alesp_projetos)
 
 6 - Mostra quais projetos de lei tiveram aprovação e as falhas de transparência do sistema (notebook alesp_tramitacao)
 
