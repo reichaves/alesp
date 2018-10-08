@@ -23,3 +23,5 @@ Os eixos estudados foram:
 8 - Verifca se empresas de deputados estaduais foram beneficiadas com despesas de gabinete (notebook alesp_empresas)
 
 9 - Mostra quais contratos estaduais têm as empresas de deputados (notebook alesp_fazenda)
+
+Algumas das informações geraram essa [reportagem](https://www1.folha.uol.com.br/poder/2018/10/assembleia-de-sp-aprova-70-de-leis-do-governo-e-20-dos-projetos-proprios.shtml) 
